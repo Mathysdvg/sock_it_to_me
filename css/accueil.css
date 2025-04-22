@@ -1,0 +1,91 @@
+/* Style général */
+main {
+    padding: 2rem;
+    background: url('../images/bg-japan.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    font-family: 'Noto Serif JP', serif;
+    color: #2f2f2f;
+    background-color: #f8f4ec;
+}
+
+main h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: #8b1c1c;
+}
+
+main p {
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 2rem;
+    color: #444;
+}
+
+/* Conteneur des produits */
+.produits-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+/* Carte produit avec largeur fixe */
+.produit-card {
+    width: 300px;
+    background-color: #fff9f2;
+    border: 2px solid #c4a484;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Image */
+.produit-card img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-bottom: 2px solid #c4a484;
+}
+
+
+.details {
+    padding: 0.8rem;
+}
+
+.details h2 {
+    font-size: 1.1rem;
+    color: #402020;
+    margin-bottom: 0.3rem;
+}
+
+.details h3 {
+    font-size: 0.9rem;
+    color: #5b3b3b;
+    margin-bottom: 0.4rem;
+}
+
+.details .prix {
+    font-weight: bold;
+    color: #7b1e1e;
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+}
+
+.details button {
+    background-color: #b12d2d;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    font-size: 0.9rem;
+    width: 275px;
+    cursor: pointer;
+}
+
+.details button:hover {
+    background-color: #921f1f;
+}
