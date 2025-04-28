@@ -34,7 +34,7 @@ main p {
 
 /* Carte produit avec largeur fixe */
 .produit-card {
-    width: 300px;
+    width: 200px;
     background-color: #fff9f2;
     border: 2px solid #c4a484;
     border-radius: 0.8rem;
@@ -45,8 +45,8 @@ main p {
 
 /* Image */
 .produit-card img {
-    width: 300px;
-    height: 300px;
+    width:200px;
+    height: 200px;
     object-fit: cover;
     border-bottom: 2px solid #c4a484;
 }
@@ -57,12 +57,14 @@ main p {
 }
 
 .details h2 {
+    text-align: center;
     font-size: 1.1rem;
     color: #402020;
     margin-bottom: 0.3rem;
 }
 
 .details h3 {
+    text-align: center;
     font-size: 0.9rem;
     color: #5b3b3b;
     margin-bottom: 0.4rem;
@@ -82,7 +84,7 @@ main p {
     padding: 0.5rem;
     border-radius: 0.4rem;
     font-size: 0.9rem;
-    width: 275px;
+    width: 175px;
     cursor: pointer;
 }
 

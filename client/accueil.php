@@ -1,20 +1,19 @@
 <?php
-include 'includes/db.php';
-include 'includes/header.php';
+include '../includes/db.php';
+include '../includes/header.php';
 $stmt = $pdo->prepare("SELECT * FROM produits");
 $stmt->execute();
 $produits = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <head>
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/accueil.css">
+    <link rel="stylesheet" href="../css/accueil.css">
 </head>
 <main>
     <h1>Bienvenue sur Sock It To Me !</h1>
     <p>Les meilleures chaussettes de l'univers !</p>
 
         <?php
-        $sql = "SELECT nom, description, prix, image FROM produits";
+        $sql = "SELECT nom, prix,taille, image FROM produits";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
 
@@ -30,7 +29,7 @@ $produits = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 echo "<h2>" . htmlspecialchars($chaussette["nom"]) . "</h2>";
                 echo "<h3>" . htmlspecialchars($chaussette["taille"]) . "</h3>";
                 echo "<p class='prix'>" . number_format($chaussette["prix"], 2) . " €</p>";
-                echo "<button>Ajouter au panier</button>";
+                echo "<a href=" . "'produit.php'><button>Voir plus</button></a>";
                 echo "</div>";
                 echo "</div>";
             }
@@ -41,4 +40,4 @@ $produits = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
 </main>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

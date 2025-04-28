@@ -31,6 +31,7 @@
     font-weight: bold;
     transition: color 0.3s;
     text-decoration: none;
+    list-style-type: none;
 }
 
 .main-nav a:hover {
