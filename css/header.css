@@ -7,11 +7,8 @@
 
 .header-container {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    max-width: 1200px;
-    margin: auto;
-    padding: 0 20px;
+    align-items: center;
 }
 
 .logo {
@@ -19,20 +16,25 @@
     height: auto;
 }
 
-.main-nav a {
-    color: #f0e9dc;
-    margin-left: 20px;
-    font-weight: bold;
-    transition: color 0.3s;
+.main-nav {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin-right: 10px;
+    align-items: center;
 }
+
 .main-nav li {
-    color: #f0e9dc;
-    margin-left: 20px;
-    font-weight: bold;
-    transition: color 0.3s;
-    text-decoration: none;
-    list-style-type: none;
+    display: inline-block;
 }
+
+.main-nav a {
+    text-decoration: none;
+    color: #b3a8a8;
+    font-weight: bold;
+}
+
 
 .main-nav a:hover {
     color: #d4af37;

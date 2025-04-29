@@ -1,14 +1,4 @@
 <?php
-//session_start();
-
-// Sécurité : rediriger si l'utilisateur n'est pas admin
-//if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != true) {
-    //header('Location: accueil.php');
-   // exit();
-//}
-?>
-
-<?php
 include '../includes/db.php';
 include '../includes/header.php';
 ?>
