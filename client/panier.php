@@ -79,7 +79,9 @@ foreach ($produits as $produit) {
         <div class="panier-resume">
             <h2>Résumé du Panier</h2>
             <p>Total: <?= number_format($total, 2) ?> €</p>
+            <?php if (count($produits) > 0) : ?>
             <a href="payer.php" class="btn-payer">Passer à l'achat<a/>
+                <?php endif; ?>
         </div>
     </div>
 </main>

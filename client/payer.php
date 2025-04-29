@@ -2,7 +2,6 @@
 include '../includes/db.php';
 include '../includes/header.php';
 
-// Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['utilisateur_id'])) {
     header("Location: connexion.php");
     exit();
@@ -10,12 +9,15 @@ if (!isset($_SESSION['utilisateur_id'])) {
 
 $utilisateur_id = $_SESSION['utilisateur_id'];
 
-// Gérer la soumission du formulaire de paiement
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $card_number = $_POST['card-number'];
     $expiry_date = $_POST['expiry-date'];
     $cvv = $_POST['cvv'];
     $card_holder = $_POST['card-holder'];
+
+    // Supprimer le panier
+    $stmt = $pdo->prepare("DELETE FROM panier WHERE utilisateur_id = ?");
+    $stmt->execute([$utilisateur_id]);
 
     $message = "Paiement effectué avec succès !";
 }
