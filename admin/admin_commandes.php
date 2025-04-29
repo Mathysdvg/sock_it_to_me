@@ -9,7 +9,7 @@ $commandes = $stmt->fetchAll();
     <head>
         <link rel="stylesheet" href="../css/dashboard.css">
         <a href="dashboard.php" class="btn-retour">← Retour au Dashboard</a>
-        <a href="ajouter_produit.php" class="btn-ajouter">+ Ajouter un produit</a>
+        <a href="ajouter.php" class="btn-ajouter">+ Ajouter un produit</a>
     </head>
     <main>
         <h2>Gestion des Commandes</h2>

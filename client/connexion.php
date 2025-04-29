@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['utilisateur_id'] = $utilisateur['id'];
         $_SESSION['nom'] = $utilisateur['nom'];
         $_SESSION['is_admin'] = $utilisateur['is_admin'];
-        header("Location: accueil.php");
+        header("Location: produit.php");
         exit();
     } else {
         echo "<p class='error'>Email ou mot de passe incorrect.</p>";

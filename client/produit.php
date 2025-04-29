@@ -3,28 +3,31 @@ include '../includes/db.php';
 include '../includes/header.php';
 
 // Gérer l'ajout au panier
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['produit_id'])) {
-    $utilisateur_id = $_SESSION['utilisateur_id']; // ID de l'utilisateur connecté
-    $produit_id = intval($_POST['produit_id']);
+if (isset($_SESSION['utilisateur_id'])){
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['produit_id'])) {
+        $utilisateur_id = $_SESSION['utilisateur_id'];
+        $produit_id = intval($_POST['produit_id']);
 
-    // Vérifier si ce produit est déjà dans le panier
-    $stmt = $pdo->prepare("SELECT * FROM panier WHERE utilisateur_id = ? AND produit_id = ?");
-    $stmt->execute([$utilisateur_id, $produit_id]);
-    $existant = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Vérifier si ce produit est déjà dans le panier
+        $stmt = $pdo->prepare("SELECT * FROM panier WHERE utilisateur_id = ? AND produit_id = ?");
+        $stmt->execute([$utilisateur_id, $produit_id]);
+        $existant = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($existant) {
-        // Si déjà présent, augmenter la quantité
-        $stmt = $pdo->prepare("UPDATE panier SET quantite = quantite + 1 WHERE utilisateur_id = ? AND produit_id = ?");
-        $stmt->execute([$utilisateur_id, $produit_id]);
-    } else {
-        // Sinon insérer un nouvel enregistrement
-        $stmt = $pdo->prepare("INSERT INTO panier (utilisateur_id, produit_id, quantite) VALUES (?, ?, 1)");
-        $stmt->execute([$utilisateur_id, $produit_id]);
+        if ($existant) {
+            // Si déjà présent, augmenter la quantité
+            $stmt = $pdo->prepare("UPDATE panier SET quantite = quantite + 1 WHERE utilisateur_id = ? AND produit_id = ?");
+            $stmt->execute([$utilisateur_id, $produit_id]);
+        } else {
+            // Sinon insérer un nouvel enregistrement
+            $stmt = $pdo->prepare("INSERT INTO panier (utilisateur_id, produit_id, quantite) VALUES (?, ?, 1)");
+            $stmt->execute([$utilisateur_id, $produit_id]);
+        }
+
+        header("Location: produit.php");
+        exit();
     }
-
-    header("Location: accueil.php");
-    exit();
 }
+
 
 // Récupérer les produits
 $stmt = $pdo->prepare("SELECT * FROM produits");
@@ -32,7 +35,7 @@ $stmt->execute();
 $produits = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <head>
-    <link rel="stylesheet" href="../css/accueil.css">
+    <link rel="stylesheet" href="../css/produit.css">
 </head>
 <main>
     <h1>Bienvenue sur Sock It To Me !</h1>

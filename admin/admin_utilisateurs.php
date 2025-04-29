@@ -9,7 +9,7 @@ $utilisateurs = $stmt->fetchAll();
 <head>
     <link rel="stylesheet" href="../css/dashboard.css">
     <a href="dashboard.php" class="btn-retour">← Retour au Dashboard</a>
-    <a href="ajouter_produit.php" class="btn-ajouter">+ Ajouter un produit</a>
+    <a href="ajouter.php" class="btn-ajouter">+ Ajouter un produit</a>
 </head>
 <main>
     <h2>Gestion des Utilisateurs</h2>
@@ -22,8 +22,8 @@ $utilisateurs = $stmt->fetchAll();
                 <td><?= htmlspecialchars($u['email']) ?></td>
                 <td><?= $u['is_admin'] ? 'Oui' : 'Non' ?></td>
                 <td>
-                    <a href="modifier_utilisateur.php?id=<?= $u['id'] ?>">Modifier</a> |
-                    <a href="supprimer_produit.php?id="<?= $u['id'] ?>>Supprimer</a>
+                    <a href="modifier.php">Modifier</a> |
+                    <a href="supprimer.php">Supprimer</a>
                 </td>
             </tr>
         <?php endforeach; ?>
