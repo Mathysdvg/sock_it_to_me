@@ -1,10 +1,8 @@
 /* Style général */
 main {
     padding: 2rem;
-    background: url('../images/bg-japan.jpg') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
-    font-family: 'Noto Serif JP', serif;
     color: #2f2f2f;
     background-color: #f8f4ec;
 }
