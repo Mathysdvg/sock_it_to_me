@@ -11,6 +11,7 @@ include '../includes/header.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Récupérer les données du formulaire
+    $userId = $_SESSION['utilisateur_id'];
     $status = 'en cours'; // Statut de la commande
     $dateCommande = date('Y-m-d H:i:s');
 
@@ -20,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $commandeId = $pdo->lastInsertId();
 
     // Récupérer les produits du panier
-    $stmt = $pdo->prepare("SELECT produit_id, quantite FROM panier WHERE utilisteur_id = ?");
+    $stmt = $pdo->prepare("SELECT produit_id, quantite FROM panier WHERE utilisateur_id = ?");
     $stmt->execute([$userId]);
     $panier = $stmt->fetchAll();
 
@@ -28,17 +29,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     foreach ($panier as $item) {
         $produitId = $item['produit_id'];
         $quantite = $item['quantite'];
-        $stmt = $pdo->prepare("INSERT INTO commande_details (id_commande, id_produit, quantite) VALUES (?, ?, ?)");
-        $stmt->execute([$commandeId, $produitId, $quantite]);
+        $prixTotal = $item['prixTotal'];
+        $stmt = $pdo->prepare("INSERT INTO commande_details (id_commande, id_produit, quantite, prix_total) VALUES (?, ?, ?, ?)");
+        $stmt->execute([$commandeId, $produitId, $quantite, $prixTotal]);
     }
 
     // Supprimer le panier
-    $stmt = $pdo->prepare("DELETE FROM panier WHERE utilisteur_id = ?");
+    $stmt = $pdo->prepare("DELETE FROM panier WHERE utilisateur_id = ?");
     $stmt->execute([$userId]);
 
     echo "Paiement effectué avec succès !";
 } else {
-    // Afficher le formulaire de paiement
     ?>
 
     <h1>Paiement</h1>

@@ -9,7 +9,7 @@ $produits = $stmt->fetchAll();
     <head>
         <link rel="stylesheet" href="../css/dashboard.css">
         <a href="dashboard.php" class="btn-retour">← Retour au Dashboard</a>
-        <a href="ajouter.php" class="btn-ajouter">+ Ajouter un produit</a>
+        <a href="admin_ajouter_produit.php" class="btn-ajouter">+ Ajouter un produit</a>
     </head>
     <main>
         <h2>Gestion des Produits</h2>
@@ -24,8 +24,8 @@ $produits = $stmt->fetchAll();
                     <td><?= $p['stock'] ?></td>
                     <td><?= $p['image'] ?></td>
                     <td>
-                        <a href="modifier.php>">Modifier</a> |
-                        <a href="supprimer.php">Supprimer</a>
+                        <a href="admin_modifier_produit.php>">Modifier</a> |
+                        <a href="admin_supprimer_produit.php">Supprimer</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

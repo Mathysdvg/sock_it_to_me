@@ -13,7 +13,6 @@ include '../includes/header.php';
     <div class="admin-buttons">
         <a href="admin_produits.php" class="btn-admin">Gérer les produits</a>
         <a href="admin_utilisateurs.php" class="btn-admin">Gérer les utilisateurs</a>
-        <a href="admin_commandes.php" class="btn-admin">Gérer les commandes</a>
     </div>
 </main>
 
