@@ -14,7 +14,7 @@ $utilisateurs = $stmt->fetchAll();
 <main>
     <h2>Gestion des Utilisateurs</h2>
     <table>
-        <tr><th>ID</th><th>Nom</th><th>Email</th><th>Admin ?</th><th>Actions</th></tr>
+        <tr><th>ID</th><th>Nom</th><th>Email</th><th>Admin</th><th>Actions</th></tr>
         <?php foreach ($utilisateurs as $u): ?>
             <tr>
                 <td><?= $u['id'] ?></td>
@@ -22,7 +22,6 @@ $utilisateurs = $stmt->fetchAll();
                 <td><?= htmlspecialchars($u['email']) ?></td>
                 <td><?= $u['is_admin'] ? 'Oui' : 'Non' ?></td>
                 <td>
-                    <a href="admin_modifier_utilisateur.php">Modifier</a> |
                     <a href="admin_supprimer_utilisateur.php">Supprimer</a>
                 </td>
             </tr>
