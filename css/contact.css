@@ -1,0 +1,78 @@
+
+main {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Titre */
+h1 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 1.2rem;
+    color: #8b1c1c;
+}
+
+/* Paragraphe d'intro ou de retour */
+p {
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 2rem;
+    color: #444;
+}
+
+/* Formulaire */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    padding: 10px;
+    margin-bottom: 1.2rem;
+    border: 2px solid #c4a484;
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    background-color: #fff9f2;
+    resize: vertical;
+}
+
+/* Bouton */
+button {
+    padding: 10px;
+    background-color: #b12d2d;
+    border: none;
+    border-radius: 0.4rem;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #921f1f;
+}
+
+/* Lien retour */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #8b1c1c;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
