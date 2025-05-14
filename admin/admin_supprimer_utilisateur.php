@@ -1,5 +1,9 @@
 <?php
 include '../includes/db.php';
+
+if (!isset($pdo)) {
+    die("Erreur : connexion PDO non établie");
+}
 include '../includes/header.php';
 
 // Vérifier si l'ID de l'utilisateur est fourni
@@ -9,7 +13,7 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Requête SQL préparée avec PDO
     $sql_delete = "DELETE FROM users WHERE id = :id";
-    $stmt_delete = $conn->prepare($sql_delete);
+    $stmt_delete = $pdo->prepare($sql_delete);
 
     // Exécuter la requête avec la valeur de l'ID
     if ($stmt_delete->execute([':id' => $id])) {
@@ -28,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <main>
     <h1>Supprimer un utilisateur</h1>
-    <form method="post" action="">
+    <form method="post" action="admin_utilisateurs.php">
         <p>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</p>
         <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>">
         <button type="submit">Supprimer</button>

@@ -1,5 +1,8 @@
 <?php
 include '../includes/db.php';
+if (!isset($pdo)) {
+    die("Erreur : connexion PDO non établie");
+}
 include '../includes/header.php';
 
 // Vérifier si le formulaire a été soumis
@@ -14,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sql = "INSERT INTO users (nom, email, mot_de_passe, is_admin) VALUES (?, ?, ?, ?)";
 
     // Préparer la requête
-    $stmt = $conn->prepare($sql);
+    $stmt = $pdo->prepare($sql);
 
     if ($stmt) {
         // Lier les paramètres
@@ -30,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Fermer la déclaration
         $stmt->close();
     } else {
-        echo "Erreur: " . $conn->error;
+        echo "Erreur: " . $pdo->error;
     }
 }
 ?>
