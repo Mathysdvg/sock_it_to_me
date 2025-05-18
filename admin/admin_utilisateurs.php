@@ -1,7 +1,7 @@
 <?php
 include '../includes/db.php';
 include '../includes/header.php';
-
+global $pdo;
 $stmt = $pdo->prepare("SELECT * FROM users");
 $stmt->execute();
 $utilisateurs = $stmt->fetchAll();
@@ -22,7 +22,7 @@ $utilisateurs = $stmt->fetchAll();
                 <td><?= htmlspecialchars($u['email']) ?></td>
                 <td><?= $u['is_admin'] ? 'Oui' : 'Non' ?></td>
                 <td>
-                    <a href="admin_supprimer_utilisateur.php">Supprimer</a>
+                    <a href="admin_supprimer_utilisateur.php?id=<?= $u['id'] ?>" class="btn-retour" onclick="return confirm('Supprimer cet utilisateur ?')">Supprimer</a>
                 </td>
             </tr>
         <?php endforeach; ?>

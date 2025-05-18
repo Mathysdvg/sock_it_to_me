@@ -1,40 +1,28 @@
 <?php
 include '../includes/db.php';
-if (!isset($pdo)) {
-    die("Erreur : connexion PDO non établie");
-}
 include '../includes/header.php';
+global $pdo;
 
-// Vérifier si le formulaire a été soumis
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Récupérer les données du formulaire
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nom = $_POST['nom'];
     $email = $_POST['email'];
-    $mot_de_passe = $_POST['mot_de_passe'];
-    $is_admin = $_POST['is_admin'];
+    $motdepasse = password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT);
+    $is_admin = isset($_POST["is_admin"]) && $_POST["is_admin"] == "1" ? 1 : 0;
 
-    // Requête SQL préparée pour insérer les données
-    $sql = "INSERT INTO users (nom, email, mot_de_passe, is_admin) VALUES (?, ?, ?, ?)";
-
-    // Préparer la requête
+    // Requête préparée sécurisée
+    $sql = "INSERT INTO users (nom, email, mot_de_passe, is_admin) 
+            VALUES (:nom, :email, :mot_de_passe, :is_admin)";
     $stmt = $pdo->prepare($sql);
 
-    if ($stmt) {
-        // Lier les paramètres
-        $stmt->bind_param("sssi", $nom, $email, $mot_de_passe, $is_admin);
+    $stmt->execute([
+        ':nom' => $nom,
+        ':email' => $email,
+        ':mot_de_passe' => $motdepasse,
+        ':is_admin' => $is_admin
+    ]);
 
-        // Exécuter la requête
-        if ($stmt->execute()) {
-            echo "Nouvel utilisateur ajouté avec succès.";
-        } else {
-            echo "Erreur: " . $stmt->error;
-        }
-
-        // Fermer la déclaration
-        $stmt->close();
-    } else {
-        echo "Erreur: " . $pdo->error;
-    }
+    header('Location: admin_utilisateurs.php');
+    exit();
 }
 ?>
 
@@ -48,19 +36,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <label for="nom">Nom :</label>
         <input type="text" name="nom" id="nom" required>
         <br>
+
         <label for="email">Email :</label>
         <input type="email" name="email" id="email" required>
         <br>
+
         <label for="mot_de_passe">Mot de passe :</label>
         <input type="password" name="mot_de_passe" id="mot_de_passe" required>
         <br>
+
         <label for="is_admin">Est admin :</label>
-        <input type="number" name="is_admin" id="is_admin" required>
+        <select name="is_admin" id="is_admin" required>
+            <option value="0">Non</option>
+            <option value="1">Oui</option>
+        </select>
         <br>
+
         <button type="submit">Ajouter</button>
     </form>
 </main>
 
-<?php
-include '../includes/footer.php';
-?>
+<?php include '../includes/footer.php'; ?>

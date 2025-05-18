@@ -1,15 +1,17 @@
 <?php
 include '../includes/db.php';
+include '../includes/header.php';
+global $pdo;
 
-$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$id = $_GET['id'] ?? null;
 
-$sql = "DELETE FROM produits WHERE id = :id";
-$stmt = $pdo->prepare($sql);
-if ($stmt->execute([':id' => $id])) {
-    header('Location: liste_produits.php');
-    exit();
-} else {
-    echo "Erreur lors de la suppression du produit.";
+if ($id) {
+    $stmt = $pdo->prepare("DELETE FROM produits WHERE id = :id");
+    $stmt->execute([':id' => $id]);
 }
-?>
 
+header("Location: admin_produits.php");
+exit;
+
+include '../includes/footer.php';
+?>

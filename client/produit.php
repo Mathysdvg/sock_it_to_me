@@ -1,6 +1,7 @@
 <?php
 include '../includes/db.php';
 include '../includes/header.php';
+global $pdo;
 
 // Gérer l'ajout au panier
 if (isset($_SESSION['utilisateur_id'])){

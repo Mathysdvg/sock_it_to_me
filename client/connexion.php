@@ -1,6 +1,7 @@
 <?php
 include '../includes/db.php';
 include '../includes/header.php';
+global $pdo;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);

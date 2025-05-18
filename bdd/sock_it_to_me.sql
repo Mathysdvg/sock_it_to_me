@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 29 avr. 2025 à 13:48
+-- Généré le : dim. 18 mai 2025 à 13:19
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `commandes` (
   `date_commande` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `commande_details` (
   PRIMARY KEY (`id`),
   KEY `id_commande` (`id_commande`),
   KEY `id_produit` (`id_produit`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -70,15 +70,14 @@ CREATE TABLE IF NOT EXISTS `panier` (
   PRIMARY KEY (`id`),
   KEY `utilisateur_id` (`utilisateur_id`),
   KEY `produit_id` (`produit_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `panier`
 --
 
 INSERT INTO `panier` (`id`, `utilisateur_id`, `produit_id`, `quantite`) VALUES
-(14, 4, 1, 1),
-(15, 4, 3, 1);
+(24, 3, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -95,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `produits` (
   `image` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `stock` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `produits`
@@ -104,7 +103,8 @@ CREATE TABLE IF NOT EXISTS `produits` (
 INSERT INTO `produits` (`id`, `nom`, `taille`, `prix`, `image`, `stock`) VALUES
 (1, 'Chaussettes Avocat', 'M', 11.20, 'avocat.png', 45),
 (2, 'Chaussettes Espace', 'L', 8.49, 'espace.png', 12),
-(3, 'Chaussettes USB', 'S', 9.99, 'usb.png', 38);
+(3, 'Chaussettes USB', 'S', 9.99, 'usb.png', 38),
+(4, 'Chaussettes Brainrot Italian Animal', 'XL', 20.99, 'brainrot.png', 69);
 
 -- --------------------------------------------------------
 
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `is_admin` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `users`

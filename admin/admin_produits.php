@@ -1,6 +1,7 @@
 <?php
 include '../includes/db.php';
 include '../includes/header.php';
+global $pdo;
 
 $stmt = $pdo->prepare("SELECT * FROM produits");
 $stmt->execute();
@@ -24,11 +25,13 @@ $produits = $stmt->fetchAll();
                     <td><?= $p['stock'] ?></td>
                     <td><?= $p['image'] ?></td>
                     <td>
-                        <a href="admin_modifier_produit.php>">Modifier</a> |
-                        <a href="admin_supprimer_produit.php">Supprimer</a>
+                        <a href="admin_modifier_produit.php?id=<?= $p['id'] ?>" class="btn-retour">Modifier</a>
+                        <a href="admin_supprimer_produit.php?id=<?= $p['id'] ?>" class="btn-retour" onclick="return confirm('Supprimer ce produit ?')">Supprimer</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </table>
     </main>
-<?php include '../includes/footer.php'; ?>
+<?php
+include '../includes/footer.php';
+?>
